@@ -1,18 +1,27 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import InvisibleLabel from '../layout/InvisibleLabel';
+import { Input, Button } from '..';
 
-const InvisibleLabel = styled.label`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
+const ListItem = styled.li`
+  font-size: 16px;
+  height: 50px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+`;
 
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
+const ListItemTitle = styled.span`
+  width: 70%;
+  margin-left: 8px;
+  text-decoration: ${props => props.isCompleted && 'line-through'};
+`;
+
+const ListItemButtonGroups = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 30%;
+  align-items: center;
 `;
 
 const TodoItem = ({ id, todo, isCompleted, update, remove }) => {
@@ -45,40 +54,68 @@ const TodoItem = ({ id, todo, isCompleted, update, remove }) => {
   };
 
   return (
-    <div>
-      <InvisibleLabel htmlFor={`todo-${id}`}>{`toggle todo-${id}`}</InvisibleLabel>
-      <input type="checkbox" id={`todo-${id}`} checked={isCompleted} onChange={handleToggleTodo} />
+    <ListItem>
+      <InvisibleLabel htmlFor={`todo-${id}-toggle`}>{`toggle todo-${id}`}</InvisibleLabel>
+      <input type="checkbox" id={`todo-${id}-toggle`} checked={isCompleted} onChange={handleToggleTodo} />
       {modifyMode ? (
         <>
-          <input
+          <Input
+            id={`todo-${id}`}
+            mg="0px 0px 0px 8px"
             value={modifyValue}
             onChange={handleModifyInputChange}
             onKeyUp={handleSubmitEnter}
             data-testid="modify-input"
+            w="70%"
           />
-          <div>
-            <button data-testid="submit-button" onClick={handleSubmitClick}>
+          <ListItemButtonGroups>
+            <Button
+              w="50px"
+              bg="rgb(138, 209, 146)"
+              mg="0px 8px 0px 0px"
+              borderRadius="15px"
+              data-testid="submit-button"
+              onClick={handleSubmitClick}>
               제출
-            </button>
-            <button type="button" data-testid="cancel-button" onClick={handleToggleModifyMode}>
+            </Button>
+            <Button
+              w="50px"
+              bg="rgb(255, 97, 97)"
+              borderRadius="15px"
+              type="button"
+              data-testid="cancel-button"
+              onClick={handleToggleModifyMode}>
               취소
-            </button>
-          </div>
+            </Button>
+          </ListItemButtonGroups>
         </>
       ) : (
         <>
-          <span>{todo}</span>
-          <div>
-            <button type="button" data-testid="modify-button" onClick={handleToggleModifyMode}>
+          <ListItemTitle isCompleted={isCompleted}>{todo}</ListItemTitle>
+          <ListItemButtonGroups>
+            <Button
+              w="50px"
+              bg="rgb(138, 209, 146)"
+              mg="0px 8px 0px 0px"
+              borderRadius="15px"
+              type="button"
+              data-testid="modify-button"
+              onClick={handleToggleModifyMode}>
               수정
-            </button>
-            <button type="button" data-testid="delete-button" onClick={handleDeleteClick}>
+            </Button>
+            <Button
+              w="50px"
+              bg="rgb(255, 97, 97)"
+              borderRadius="15px"
+              type="button"
+              data-testid="delete-button"
+              onClick={handleDeleteClick}>
               삭제
-            </button>
-          </div>
+            </Button>
+          </ListItemButtonGroups>
         </>
       )}
-    </div>
+    </ListItem>
   );
 };
 

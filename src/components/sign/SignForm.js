@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { validate } from '../../utils';
 import { useAuth } from '../../hooks';
+import { Input, Button } from '..';
 
 const formConfig = {
   signin: {
@@ -11,7 +12,7 @@ const formConfig = {
     linkText: '처음 오셨나요?',
   },
   signup: {
-    buttonText: '회원가입',
+    formTypeText: '회원가입',
     dataTestId: 'signup-button',
     link: '/signin',
     linkText: '이미 회원이신가요?',
@@ -20,9 +21,14 @@ const formConfig = {
 
 const Form = styled.form`
   display: flex;
-  align-items: center;
   justify-content: space-between;
   flex-direction: column;
+`;
+
+const Warning = styled.span`
+  font-size: 14px;
+  color: red;
+  padding-left: 3px;
 `;
 
 const SignForm = ({ formType }) => {
@@ -32,36 +38,54 @@ const SignForm = ({ formType }) => {
   const allValid = emailValid && passwordValid;
   const signIn = formType === 'signin';
 
-  if (error) return <div>error</div>;
+  if (error)
+    return (
+      <div>
+        {error}
+        <p>{error.response.data.message}</p>
+      </div>
+    );
 
   return (
     <>
-      <h1>{formConfig[formType].formTypeText.toUpperCase()}</h1>
+      <h1>{formConfig[formType].formTypeText}</h1>
       <Form onSubmit={signIn ? handleSignInSubmit : handleSignUpSubmit}>
-        <label htmlFor="email">email</label>
-        <input
+        <Input
           id="email"
           name="email"
           value={formValues.email}
           onChange={handleValueChange}
           data-testid="email-input"
+          labelText="email"
+          htmlFor="email"
+          placeholder="이메일을 입력해주세요."
+          mg="12px 0 6px 0"
+          invalid={formValues.email && !emailValid}
         />
-        {formValues.email && !emailValid && <span>아이디는 @를 포함해야합니다.</span>}
-        <label htmlFor="password">password</label>
-        <input
+        {formValues.email && !emailValid && <Warning>아이디는 @를 포함해야합니다.</Warning>}
+        <Input
           id="password"
           name="password"
           type="password"
           value={formValues.password}
           onChange={handleValueChange}
           data-testid="password-input"
+          labelText="password"
+          htmlFor="password"
+          placeholder="비밀번호를 입력해주세요."
+          mg="6px 0 6px 0 "
+          invalid={formValues.password && !passwordValid}
         />
-        {formValues.password && !passwordValid && <span>비밀번호는 8자 이상이여야 합니다.</span>}
-        <button data-testid={formConfig[formType].dataTestId} disabled={!allValid}>
+        {formValues.password && !passwordValid && <Warning>비밀번호는 8자 이상이여야 합니다.</Warning>}
+        <Button data-testid={formConfig[formType].dataTestId} disabled={!allValid} mg="6px 0 0 0">
           {formConfig[formType].formTypeText}
-        </button>
+        </Button>
       </Form>
-      <Link to={formConfig[formType].link}>{formConfig[formType].linkText}</Link>
+      <Link to={formConfig[formType].link}>
+        <Button mg="5px 0px" bg="white" c="Dodgerblue">
+          {formConfig[formType].linkText}
+        </Button>
+      </Link>
     </>
   );
 };
