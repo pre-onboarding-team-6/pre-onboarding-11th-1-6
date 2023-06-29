@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import validate from '../../utils/validate';
-import useAuth from '../../hooks/useAuth';
+import { Link } from 'react-router-dom';
+import { validate } from '../../utils';
+import { useAuth } from '../../hooks';
 
 const formConfig = {
   signin: {

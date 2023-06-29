@@ -1,4 +1,4 @@
-import SignForm from '../components/sign/SignForm';
+import { SignForm } from '../components';
 
 const SignUp = () => <SignForm formType="signup" />;
 
