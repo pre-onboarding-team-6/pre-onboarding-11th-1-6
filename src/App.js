@@ -1,26 +1,6 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { SignIn, SignUp, Todo } from './pages';
+import { RouterProvider } from 'react-router-dom';
 import GlobalStyle from './styles/GlobalStyle';
-import AuthenticationGuard from './guards/AuthenticationGuard';
-
-const routerConfig = createBrowserRouter([
-  {
-    path: '/',
-    element: <AuthenticationGuard redirectTo={'/todo'} element={<SignIn />} />,
-  },
-  {
-    path: 'signup',
-    element: <AuthenticationGuard redirectTo={'/todo'} element={<SignUp />} />,
-  },
-  {
-    path: 'signin',
-    element: <AuthenticationGuard redirectTo={'/todo'} element={<SignIn />} />,
-  },
-  {
-    path: 'todo',
-    element: <AuthenticationGuard redirectTo={'/signin'} element={<Todo />} />,
-  },
-]);
+import routerConfig from './router/routerConfig';
 
 const App = () => (
   <>
