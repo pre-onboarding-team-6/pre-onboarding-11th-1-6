@@ -1,14 +1,15 @@
 import { Navigate } from 'react-router-dom';
 import { getToken } from '../utils';
+import { PATH } from '../constants';
 
 const AuthenticationGuard = ({ redirectTo, element }) => {
   const isLogin = getToken();
 
-  if (redirectTo === '/todo' && isLogin) {
+  if (redirectTo === PATH.TODO && isLogin) {
     return <Navigate to={redirectTo} replace />;
   }
 
-  if (redirectTo === '/signin' && !isLogin) {
+  if (redirectTo === PATH.SIGN_IN && !isLogin) {
     return <Navigate to={redirectTo} replace />;
   }
 
