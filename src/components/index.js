@@ -2,6 +2,7 @@ export { default as Button } from './layout/Button';
 export { default as Input } from './layout/Input';
 export { default as InvisibleLabel } from './layout/InvisibleLabel';
 export { default as Container } from './layout/Container';
+export { default as Flex } from './layout/Flex';
 
 export { default as SignForm } from './sign/SignForm';
 export { default as SignOutButton } from './sign/SignOutButton';
