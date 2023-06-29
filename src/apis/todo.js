@@ -1,8 +1,11 @@
 import axios from 'axios';
 import { getToken } from '../utils';
+import { BASE_URL } from '../constants';
+
+const baseURL = `${BASE_URL}/todos`;
 
 const todoAxios = axios.create({
-  baseURL: 'https://www.pre-onboarding-selection-task.shop/todos',
+  baseURL,
 });
 
 export const getTodos = async () => {

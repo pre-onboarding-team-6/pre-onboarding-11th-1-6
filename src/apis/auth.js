@@ -1,16 +1,19 @@
 import axios from 'axios';
+import { BASE_URL, PATH } from '../constants';
+
+const baseURL = `${BASE_URL}/auth`;
 
 const authAxios = axios.create({
-  baseURL: 'https://www.pre-onboarding-selection-task.shop/auth',
+  baseURL,
   method: 'post',
 });
 
 export const signUp = async ({ email, password }) => {
-  await authAxios({ url: '/signup', data: { email, password } });
+  await authAxios({ url: PATH.SIGN_UP, data: { email, password } });
 };
 
 export const signIn = async ({ email, password }) => {
-  const { data } = await authAxios({ url: '/signin', data: { email, password } });
+  const { data } = await authAxios({ url: PATH.SIGN_IN, data: { email, password } });
 
   return data;
 };
