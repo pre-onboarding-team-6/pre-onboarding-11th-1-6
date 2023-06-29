@@ -10,6 +10,8 @@ const useTodos = () => {
     e.preventDefault();
     const todo = e.target[0].value.trim();
 
+    if (todo.length === 0) return;
+
     try {
       const updatedData = await createTodo(todo);
       setTodos([...todos, updatedData]);
