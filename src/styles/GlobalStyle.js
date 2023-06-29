@@ -17,6 +17,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: rgb(247, 247, 247);
+    --primary-color: rgb(117, 184, 255)
   }
 
   ul, li {
