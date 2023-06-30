@@ -16,6 +16,7 @@ authAxios.interceptors.response.use(
         window.location.href = `/error?status=${error.response.status}`;
       }
     }
+    return Promise.reject(error);
   }
 );
 
