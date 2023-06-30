@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import AuthenticationGuard from '../guards/AuthenticationGuard';
-import { SignIn, SignUp, Todo } from '../pages';
+import { SignIn, SignUp, Todo, Error } from '../pages';
 import { PATH } from '../constants';
 
 const routerConfig = createBrowserRouter([
@@ -19,6 +19,10 @@ const routerConfig = createBrowserRouter([
   {
     path: PATH.TODO,
     element: <AuthenticationGuard redirectTo={PATH.SIGN_IN} element={<Todo />} />,
+  },
+  {
+    path: PATH.ERROR,
+    element: <Error />,
   },
 ]);
 

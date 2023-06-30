@@ -1,23 +1,26 @@
 import styled from 'styled-components';
 import { SignOutButton, TodoInput, TodoItem, Flex } from '../components';
 import { useTodos } from '../hooks';
+import { ReactComponent as BallTriangle } from '../assets/icons/ball-triangle.svg';
 
 const TodoList = styled.ul`
   margin-top: 16px;
   display: flex;
   flex-direction: column;
 `;
+const FlexCenter = styled(Flex)`
+  justify-content: center;
+  height: 300px;
+`;
 
 const Todo = () => {
-  const { todos, isLoading, error, create, update, remove } = useTodos();
+  const { todos, isLoading, create, update, remove } = useTodos();
 
-  if (isLoading) return <div>...loading</div>;
-  if (error)
+  if (isLoading)
     return (
-      <div>
-        {error}
-        <p>{error.response.data.message}</p>
-      </div>
+      <FlexCenter>
+        <BallTriangle />
+      </FlexCenter>
     );
 
   return (
