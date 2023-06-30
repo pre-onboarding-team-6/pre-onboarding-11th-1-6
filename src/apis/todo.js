@@ -6,7 +6,13 @@ const baseURL = `${BASE_URL}/todos`;
 
 const todoAxios = axios.create({
   baseURL,
-  headers: { Authorization: `Bearer ${getToken()}` }
+});
+
+todoAxios.interceptors.request.use(config => {
+  const newConfig = config;
+  newConfig.headers.Authorization = `Bearer ${getToken()}`;
+
+  return newConfig;
 });
 
 export const getTodos = async () => {
