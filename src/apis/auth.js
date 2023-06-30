@@ -8,6 +8,15 @@ const authAxios = axios.create({
   method: 'post',
 });
 
+authAxios.interceptors.response.use(
+  res => res,
+  error => {
+    if (error.response.status) {
+      window.location.href = `/error?status=${error.response.status}`;
+    }
+  }
+);
+
 export const signUp = async ({ email, password }) => {
   await authAxios({ url: PATH.SIGN_UP, data: { email, password } });
 };
