@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { validate } from '../../utils';
 import { useAuth } from '../../hooks';
 import { Input, Button, InvisibleLabel } from '..';
-import { PATH } from '../../constants';
-import { DATATESTID } from '../../constants';
+import { PATH, DATATESTID } from '../../constants';
 
 const formConfig = {
   signin: {
