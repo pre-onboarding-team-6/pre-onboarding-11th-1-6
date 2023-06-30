@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import InvisibleLabel from '../layout/InvisibleLabel';
 import { Input, Button } from '..';
+import { DATATESTID } from '../../constants';
 
 const ListItem = styled.li`
   font-size: 16px;
@@ -65,7 +66,7 @@ const TodoItem = ({ id, todo, isCompleted, update, remove }) => {
             value={modifyValue}
             onChange={handleModifyInputChange}
             onKeyUp={handleSubmitEnter}
-            data-testid="modify-input"
+            data-testid={DATATESTID.MODIFY_INPUT}
             w="70%"
           />
           <ListItemButtonGroups>
@@ -74,7 +75,7 @@ const TodoItem = ({ id, todo, isCompleted, update, remove }) => {
               bg="rgb(138, 209, 146)"
               mg="0px 8px 0px 0px"
               borderRadius="15px"
-              data-testid="submit-button"
+              data-testid={DATATESTID.SUBMIT_BTN}
               onClick={handleSubmitClick}>
               제출
             </Button>
@@ -83,7 +84,7 @@ const TodoItem = ({ id, todo, isCompleted, update, remove }) => {
               bg="rgb(255, 97, 97)"
               borderRadius="15px"
               type="button"
-              data-testid="cancel-button"
+              data-testid={DATATESTID.CANCLE_BTN}
               onClick={handleToggleModifyMode}>
               취소
             </Button>
@@ -99,7 +100,7 @@ const TodoItem = ({ id, todo, isCompleted, update, remove }) => {
               mg="0px 8px 0px 0px"
               borderRadius="15px"
               type="button"
-              data-testid="modify-button"
+              data-testid={DATATESTID.MODIFY_BTN}
               onClick={handleToggleModifyMode}>
               수정
             </Button>
@@ -108,7 +109,7 @@ const TodoItem = ({ id, todo, isCompleted, update, remove }) => {
               bg="rgb(255, 97, 97)"
               borderRadius="15px"
               type="button"
-              data-testid="delete-button"
+              data-testid={DATATESTID.DELETE_BTN}
               onClick={handleDeleteClick}>
               삭제
             </Button>

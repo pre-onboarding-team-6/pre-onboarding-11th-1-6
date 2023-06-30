@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 import { validate } from '../../utils';
 import { useAuth } from '../../hooks';
 import { Input, Button } from '..';
+import { DATATESTID } from '../../constants';
 
 const formConfig = {
   signin: {
     formTypeText: '로그인',
-    dataTestId: 'signin-button',
+    dataTestId: DATATESTID.SIGN_IN_BTN,
     link: '/signup',
     linkText: '처음 오셨나요?',
   },
   signup: {
     formTypeText: '회원가입',
-    dataTestId: 'signup-button',
+    dataTestId: DATATESTID.SIGN_UP_BTN,
     link: '/signin',
     linkText: '이미 회원이신가요?',
   },
@@ -55,7 +56,7 @@ const SignForm = ({ formType }) => {
           name="email"
           value={formValues.email}
           onChange={handleValueChange}
-          data-testid="email-input"
+          data-testid={DATATESTID.EMAIL_INPUT}
           labelText="email"
           htmlFor="email"
           placeholder="이메일을 입력해주세요."
@@ -69,7 +70,7 @@ const SignForm = ({ formType }) => {
           type="password"
           value={formValues.password}
           onChange={handleValueChange}
-          data-testid="password-input"
+          data-testid={DATATESTID.PASSWORD_INPUT}
           labelText="password"
           htmlFor="password"
           placeholder="비밀번호를 입력해주세요."
