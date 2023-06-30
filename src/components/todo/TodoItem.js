@@ -24,6 +24,25 @@ const ListItemButtonGroups = styled.div`
   align-items: center;
 `;
 
+const LeftButton = styled(Button)`
+  width: 50px;
+  margin: 0 8px 0 0;
+  background-color: rgb(138, 209, 146);
+  border-radius: 15px;
+`;
+
+const RightButton = styled(Button)`
+  width: 50px;
+  margin: 0 8px 0 0;
+  background-color: rgb(255, 97, 97);
+  border-radius: 15px;
+`;
+
+const ModifyInput = styled(Input)`
+  width: 70%;
+  margin: 0 0 0 8px;
+`;
+
 const TodoItem = ({ id, todo, isCompleted, update, remove }) => {
   const [modifyValue, setModifyValue] = useState(todo);
   const [modifyMode, setModifyMode] = useState(false);
@@ -59,59 +78,32 @@ const TodoItem = ({ id, todo, isCompleted, update, remove }) => {
       <input type="checkbox" id={`todo-${id}-toggle`} checked={isCompleted} onChange={handleToggleTodo} />
       {modifyMode ? (
         <>
-          <Input
+          <ModifyInput
             id={`todo-${id}`}
-            mg="0px 0px 0px 8px"
             value={modifyValue}
             onChange={handleModifyInputChange}
             onKeyUp={handleSubmitEnter}
             data-testid="modify-input"
-            w="70%"
           />
           <ListItemButtonGroups>
-            <Button
-              w="50px"
-              bg="rgb(138, 209, 146)"
-              mg="0px 8px 0px 0px"
-              borderRadius="15px"
-              data-testid="submit-button"
-              onClick={handleSubmitClick}>
+            <LeftButton data-testid="submit-button" onClick={handleSubmitClick}>
               제출
-            </Button>
-            <Button
-              w="50px"
-              bg="rgb(255, 97, 97)"
-              borderRadius="15px"
-              type="button"
-              data-testid="cancel-button"
-              onClick={handleToggleModifyMode}>
+            </LeftButton>
+            <RightButton data-testid="cancel-button" onClick={handleToggleModifyMode}>
               취소
-            </Button>
+            </RightButton>
           </ListItemButtonGroups>
         </>
       ) : (
         <>
           <ListItemTitle isCompleted={isCompleted}>{todo}</ListItemTitle>
           <ListItemButtonGroups>
-            <Button
-              w="50px"
-              bg="rgb(138, 209, 146)"
-              mg="0px 8px 0px 0px"
-              borderRadius="15px"
-              type="button"
-              data-testid="modify-button"
-              onClick={handleToggleModifyMode}>
+            <LeftButton data-testid="modify-button" onClick={handleToggleModifyMode}>
               수정
-            </Button>
-            <Button
-              w="50px"
-              bg="rgb(255, 97, 97)"
-              borderRadius="15px"
-              type="button"
-              data-testid="delete-button"
-              onClick={handleDeleteClick}>
+            </LeftButton>
+            <RightButton data-testid="delete-button" onClick={handleDeleteClick}>
               삭제
-            </Button>
+            </RightButton>
           </ListItemButtonGroups>
         </>
       )}

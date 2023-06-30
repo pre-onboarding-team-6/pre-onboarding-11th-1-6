@@ -1,12 +1,24 @@
-import { Input, Button, Flex } from '..';
+import styled from 'styled-components';
+import { Input, Button, Flex, InvisibleLabel } from '..';
+
+const CreateButton = styled(Button)`
+  width: 21%;
+  border-radius: 15px;
+`;
+
+const InputBox = styled(Input)`
+  width: 75%;
+  margin: 0 8px 0 0;
+`;
 
 const TodoInput = ({ create }) => (
   <form onSubmit={create}>
     <Flex>
-      <Input w="75%" mg="0px 8px 0px 0px" id="todo-input" data-testid="new-todo-input" placeholder="Enter new todo!" />
-      <Button w="21%" borderRadius="15px" data-testid="new-todo-add-button">
+      <InvisibleLabel htmlFor="email">email input</InvisibleLabel>
+      <InputBox id="todo-input" data-testid="new-todo-input" placeholder="Enter new todo!" />
+      <CreateButton type="submit" data-testid="new-todo-add-button">
         + 추가
-      </Button>
+      </CreateButton>
     </Flex>
   </form>
 );
