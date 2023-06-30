@@ -53,14 +53,6 @@ const SignForm = ({ formType }) => {
   const allValid = emailValid && passwordValid;
   const signIn = formType === 'signin';
 
-  if (error)
-    return (
-      <div>
-        {error}
-        <p>{error.response.data.message}</p>
-      </div>
-    );
-
   return (
     <>
       <h1>{formConfig[formType].formTypeText}</h1>
@@ -89,6 +81,7 @@ const SignForm = ({ formType }) => {
           inValid={formValues.password && !passwordValid}
         />
         {formValues.password && !passwordValid && <Warning>비밀번호는 8자 이상이여야 합니다.</Warning>}
+        {error && <Warning>{error.response.data.message}</Warning>}
         <SubmitButton type="submit" data-testid={formConfig[formType].dataTestId} disabled={!allValid}>
           {formConfig[formType].formTypeText}
         </SubmitButton>

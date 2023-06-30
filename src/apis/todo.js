@@ -15,6 +15,17 @@ todoAxios.interceptors.request.use(config => {
   return newConfig;
 });
 
+todoAxios.interceptors.response.use(
+  res => res,
+  error => {
+    if (error.response.status) {
+      if (error.response.status >= 500) {
+        window.location.href = `/error?status=${error.response.status}`;
+      }
+    }
+  }
+);
+
 export const getTodos = async () => {
   const { data } = await todoAxios({
     method: 'get',
