@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Input, Button, Flex, InvisibleLabel } from '..';
+import { DATATESTID } from '../../constants';
 
 const CreateButton = styled(Button)`
   width: 21%;
@@ -15,8 +16,8 @@ const TodoInput = ({ create }) => (
   <form onSubmit={create}>
     <Flex>
       <InvisibleLabel htmlFor="email">email input</InvisibleLabel>
-      <InputBox id="todo-input" data-testid="new-todo-input" placeholder="Enter new todo!" />
-      <CreateButton type="submit" data-testid="new-todo-add-button">
+      <InputBox id="todo-input" data-testid={DATATESTID.ADD_INPUT} placeholder="Enter new todo!" />
+      <CreateButton type="submit" data-testid={DATATESTID.ADD_BTN}>
         + 추가
       </CreateButton>
     </Flex>

@@ -4,17 +4,19 @@ import { validate } from '../../utils';
 import { useAuth } from '../../hooks';
 import { Input, Button, InvisibleLabel } from '..';
 import { PATH } from '../../constants';
+import { DATATESTID } from '../../constants';
 
 const formConfig = {
   signin: {
     formTypeText: '로그인',
-    dataTestId: 'signin-button',
+
+    dataTestId: DATATESTID.SIGN_IN_BTN,
     link: PATH.SIGN_UP,
     linkText: '처음 오셨나요?',
   },
   signup: {
     formTypeText: '회원가입',
-    dataTestId: 'signup-button',
+    dataTestId: DATATESTID.SIGN_UP_BTN,
     link: PATH.SIGN_IN,
     linkText: '이미 회원이신가요?',
   },
@@ -63,8 +65,7 @@ const SignForm = ({ formType }) => {
           name="email"
           value={formValues.email}
           onChange={handleValueChange}
-          data-testid="email-input"
-          htmlFor="email"
+          data-testid={DATATESTID.EMAIL_INPUT}
           placeholder="이메일을 입력해주세요."
           inValid={formValues.email && !emailValid}
         />
@@ -76,7 +77,7 @@ const SignForm = ({ formType }) => {
           type="password"
           value={formValues.password}
           onChange={handleValueChange}
-          data-testid="password-input"
+          data-testid={DATATESTID.PASSWORD_INPUT}
           placeholder="비밀번호를 입력해주세요."
           inValid={formValues.password && !passwordValid}
         />

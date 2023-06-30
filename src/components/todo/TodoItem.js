@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import InvisibleLabel from '../layout/InvisibleLabel';
 import { Input, Button } from '..';
+import { DATATESTID } from '../../constants';
 
 const ListItem = styled.li`
   font-size: 16px;
@@ -83,13 +84,13 @@ const TodoItem = ({ id, todo, isCompleted, update, remove }) => {
             value={modifyValue}
             onChange={handleModifyInputChange}
             onKeyUp={handleSubmitEnter}
-            data-testid="modify-input"
+            data-testid={DATATESTID.MODIFY_INPUT}
           />
           <ListItemButtonGroups>
-            <LeftButton data-testid="submit-button" onClick={handleSubmitClick}>
+            <LeftButton data-testid={DATATESTID.SUBMIT_BTN} onClick={handleSubmitClick}>
               제출
             </LeftButton>
-            <RightButton data-testid="cancel-button" onClick={handleToggleModifyMode}>
+            <RightButton data-testid={DATATESTID.CANCLE_BTN} onClick={handleToggleModifyMode}>
               취소
             </RightButton>
           </ListItemButtonGroups>
@@ -98,10 +99,10 @@ const TodoItem = ({ id, todo, isCompleted, update, remove }) => {
         <>
           <ListItemTitle isCompleted={isCompleted}>{todo}</ListItemTitle>
           <ListItemButtonGroups>
-            <LeftButton data-testid="modify-button" onClick={handleToggleModifyMode}>
+            <LeftButton data-testid={DATATESTID.MODIFY_BTN} onClick={handleToggleModifyMode}>
               수정
             </LeftButton>
-            <RightButton data-testid="delete-button" onClick={handleDeleteClick}>
+            <RightButton data-testid={DATATESTID.DELETE_BTN} onClick={handleDeleteClick}>
               삭제
             </RightButton>
           </ListItemButtonGroups>
