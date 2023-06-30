@@ -18,7 +18,6 @@ todoAxios.interceptors.request.use(config => {
 todoAxios.interceptors.response.use(
   res => res,
   error => {
-    console.log(error);
     if (error.response.status) {
       window.location.href = `/error?status=${error.response.status}`;
     }
