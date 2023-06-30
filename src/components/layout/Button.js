@@ -1,22 +1,25 @@
 import styled from 'styled-components';
 
-const Button = styled.button(({ w, h, bg, c, mg, fz, border, borderRadius }) => ({
-  width: w ?? '100%',
-  height: h ?? '50px',
-  fontSize: fz ?? '16px',
-  color: c ?? 'white',
-  backgroundColor: bg ?? 'var(--primary-color)',
-  margin: mg ?? '0px 0px 0px 0px',
-  border: border ?? 'none',
-  borderRadius: borderRadius ?? '25px',
-  fontWeight: 'bold',
-  ':disabled': {
-    backgroundColor: 'rgb(204,204,204)',
-    color: 'rgb(100,100,100)',
-    cursor: 'default',
-  },
-  cursor: 'pointer',
-  transition: 'all .3s',
-}));
+const Button = styled.button.attrs(({ type }) => ({
+  type: type || 'button',
+}))`
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+  color: white;
+  background-color: var(--primary-color);
+  margin: 0;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:disabled {
+    background-color: rgb(204, 204, 204);
+    color: rgb(100, 100, 100);
+    cursor: default;
+  }
+`;
 
 export default Button;
