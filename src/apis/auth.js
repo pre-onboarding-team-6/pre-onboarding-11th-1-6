@@ -12,7 +12,9 @@ authAxios.interceptors.response.use(
   res => res,
   error => {
     if (error.response.status) {
-      window.location.href = `/error?status=${error.response.status}`;
+      if (error.response.status >= 500) {
+        window.location.href = `/error?status=${error.response.status}`;
+      }
     }
   }
 );
