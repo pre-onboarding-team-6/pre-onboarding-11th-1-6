@@ -60,13 +60,22 @@ const TodoItem = ({ id, todo, isCompleted, update, remove }) => {
     remove(id);
   };
 
-  const handleSubmitClick = e => {
-    e.preventDefault();
+  const handleSubmitClick = () => {
+    if (modifyValue === todo || modifyValue === '') {
+      setModifyMode(false);
+      return;
+    }
+
     update({ id, todo: modifyValue, isCompleted });
     setModifyMode(false);
   };
 
   const handleSubmitEnter = e => {
+    if (modifyValue === todo || modifyValue === '') {
+      setModifyMode(false);
+      return;
+    }
+
     if (e.key === 'Enter') {
       update({ id, todo: modifyValue, isCompleted });
       setModifyMode(false);
